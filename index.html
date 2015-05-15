@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#map-canvas {
+				height : 500px;
+			}
+		</style>
+		<title>KINSHASA</title>
+		<meta charset="utf-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_M34eZg0zFUjwYltQ51lgZg3RqEkfqKc&sensor=false">
+		</script>
+		<script type="text/javascript">
+			
+			var map;
+			
+			function initialise(location) {
+				console.log(location);
+				
+				var mapOptions = {
+					center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
+					zoom: 12,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+			}
+			
+			$(document).ready(function()
+			{
+				navigator.geolocation.getCurrentPostion(initialise);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="map-canvas"></div>
+	</body>
+</html>
